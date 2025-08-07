@@ -1,0 +1,79 @@
+# Site settings
+title: AEMeds.in
+description: "Advancing AEM Edge Delivery knowledge through tutorials, insights, and expert analysis"
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://aemeds.in" # the base hostname & protocol for your site
+author: AEM Edge Expert
+email: contact@aemeds.in
+
+# Social Links
+linkedin_username: aemeds
+github_username: aemeds
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:title/
+
+# Pagination
+paginate: 6
+paginate_path: "/blog/page:num/"
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:title/
+
+# Default values
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "AEM Edge Expert"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+
+# Site navigation
+navigation:
+  - title: Home
+    url: /
+  - title: About
+    url: /about/
+  - title: Blog
+    url: /blog/
+  - title: Contact
+    url: /contact/
+
+# Categories
+categories:
+  - name: Performance
+    slug: performance
+    description: "Web performance optimization and Core Web Vitals"
+  - name: Development  
+    slug: development
+    description: "AEM Edge development patterns and best practices"
+  - name: Mobile
+    slug: mobile
+    description: "Mobile-first design and responsive development"
+  - name: Tutorials
+    slug: tutorials
+    description: "Step-by-step guides and how-to articles"

@@ -1,0 +1,191 @@
+---
+layout: default
+title: Blog
+description: "Explore the latest tutorials, performance tips, and development best practices for Adobe Experience Manager Edge Delivery Services"
+permalink: /blog/
+custom_js:
+  - blog-filter.js
+---
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title gradient-text">AEM Edge Delivery Insights</h1>
+        <p class="page-subtitle">Explore the latest tutorials, performance tips, and development best practices for Adobe Experience Manager Edge Delivery Services</p>
+    </div>
+</section>
+
+<!-- Filter Section -->
+<section class="filter-section">
+    <div class="container">
+        <div class="filter-bar">
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-category="all">All Articles</button>
+                {% for category in site.categories %}
+                    <button class="filter-btn" data-category="{{ category.slug }}">{{ category.name }}</button>
+                {% endfor %}
+            </div>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search articles...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog List Section -->
+<section class="blog-list-section">
+    <div class="container">
+        <div class="blog-list" id="blog-list">
+            {% assign featured_post = site.posts | where: "featured", true | first %}
+            
+            <!-- Featured Article -->
+            {% if featured_post %}
+                <article class="blog-card featured-card" data-category="{{ featured_post.category | downcase }}">
+                    <div class="blog-image featured">
+                        {% case featured_post.category %}
+                            {% when 'Performance' %}
+                                <i class="fas fa-tachometer-alt"></i>
+                            {% when 'Development' %}
+                                <i class="fas fa-code-branch"></i>
+                            {% when 'Mobile' %}
+                                <i class="fas fa-mobile-alt"></i>
+                            {% when 'Tutorials' %}
+                                <i class="fas fa-graduation-cap"></i>
+                            {% else %}
+                                <i class="fas fa-file-alt"></i>
+                        {% endcase %}
+                        <div class="blog-category {{ featured_post.category | downcase }}">Featured • {{ featured_post.category }}</div>
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">
+                            <a href="{{ featured_post.url | relative_url }}">{{ featured_post.title }}</a>
+                        </h3>
+                        <p class="blog-excerpt">{{ featured_post.excerpt | strip_html | truncate: 200 }}</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">
+                                <i class="far fa-calendar"></i> {{ featured_post.date | date: "%B %d, %Y" }}
+                            </span>
+                            {% if featured_post.reading_time %}
+                                <span class="blog-read-time">
+                                    <i class="far fa-clock"></i> {{ featured_post.reading_time }} min read
+                                </span>
+                            {% endif %}
+                            <a href="{{ featured_post.url | relative_url }}" class="blog-link">
+                                Read Full Article <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            {% endif %}
+
+            <!-- Regular Articles -->
+            {% assign regular_posts = site.posts | where_exp: "post", "post.featured != true" %}
+            {% for post in regular_posts %}
+                <article class="blog-card" data-category="{{ post.category | downcase }}" data-title="{{ post.title | downcase }}" data-content="{{ post.content | strip_html | downcase }}">
+                    <div class="blog-image">
+                        {% case post.category %}
+                            {% when 'Performance' %}
+                                <i class="fas fa-tachometer-alt"></i>
+                            {% when 'Development' %}
+                                <i class="fas fa-code-branch"></i>
+                            {% when 'Mobile' %}
+                                <i class="fas fa-mobile-alt"></i>
+                            {% when 'Tutorials' %}
+                                <i class="fas fa-graduation-cap"></i>
+                            {% else %}
+                                <i class="fas fa-file-alt"></i>
+                        {% endcase %}
+                        <div class="blog-category {{ post.category | downcase }}">{{ post.category | default: "Article" }}</div>
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">
+                            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                        </h3>
+                        <p class="blog-excerpt">{{ post.excerpt | strip_html | truncate: 140 }}</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">
+                                <i class="far fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}
+                            </span>
+                            {% if post.reading_time %}
+                                <span class="blog-read-time">
+                                    <i class="far fa-clock"></i> {{ post.reading_time }} min read
+                                </span>
+                            {% endif %}
+                            <a href="{{ post.url | relative_url }}" class="blog-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+
+        <!-- No Results Message -->
+        <div id="no-results" class="no-results" style="display: none;">
+            <div class="no-results-content">
+                <i class="fas fa-search"></i>
+                <h3>No articles found</h3>
+                <p>Try adjusting your search terms or browse all categories.</p>
+                <button class="btn btn-primary" onclick="clearFilters()">Show All Articles</button>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        {% if paginator %}
+            <div class="pagination">
+                {% if paginator.previous_page %}
+                    <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-btn">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </a>
+                {% else %}
+                    <button class="pagination-btn" disabled>
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                {% endif %}
+                
+                <div class="pagination-numbers">
+                    {% for page in (1..paginator.total_pages) %}
+                        {% if page == paginator.page %}
+                            <button class="pagination-number active">{{ page }}</button>
+                        {% elsif page == 1 %}
+                            <a href="{{ '/blog/' | relative_url }}" class="pagination-number">{{ page }}</a>
+                        {% else %}
+                            <a href="{{ '/blog/page' | append: page | append: '/' | relative_url }}" class="pagination-number">{{ page }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                {% if paginator.next_page %}
+                    <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-btn">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </a>
+                {% else %}
+                    <button class="pagination-btn" disabled>
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-content">
+            <div class="newsletter-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <h2 class="newsletter-title">Stay Updated with AEM Edge Insights</h2>
+            <p class="newsletter-text">Get the latest tutorials, performance tips, and development insights delivered to your inbox</p>
+            <form class="newsletter-form" id="newsletter-form">
+                <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+</section>

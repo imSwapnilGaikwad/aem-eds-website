@@ -1,0 +1,197 @@
+---
+layout: default
+title: "AEM Edge Delivery Services Insights"
+description: "Discover cutting-edge insights, performance optimization techniques, and expert perspectives on Adobe Experience Manager Edge Delivery Services"
+---
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+        <div class="hero-icon">
+            <i class="fas fa-rocket"></i>
+        </div>
+        <h1 class="hero-title">
+            <span class="gradient-text">AEM Edge Delivery</span><br>
+            <span class="text-white">Reimagined</span>
+        </h1>
+        <p class="hero-subtitle">
+            Discover cutting-edge insights, performance optimization techniques, and expert perspectives on Adobe Experience Manager Edge Delivery Services
+        </p>
+        <div class="hero-buttons">
+            <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
+                <i class="fas fa-code"></i>
+                Explore Tutorials
+            </a>
+            <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary">
+                <i class="fas fa-user"></i>
+                About the Developer
+            </a>
+        </div>
+    </div>
+    <!-- Floating elements -->
+    <div class="floating-icon floating-icon-1">
+        <i class="fas fa-cloud"></i>
+    </div>
+    <div class="floating-icon floating-icon-2">
+        <i class="fas fa-cog"></i>
+    </div>
+</section>
+
+<!-- Featured Blogs Preview -->
+<section class="featured-blogs">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title gradient-text">Latest AEM Edge Insights</h2>
+            <p class="section-subtitle">
+                Stay updated with the latest Edge Delivery techniques, performance tips, and development best practices
+            </p>
+        </div>
+        
+        <div class="blog-grid">
+            {% assign featured_posts = site.posts | where: "featured", true | limit: 3 %}
+            {% for post in featured_posts %}
+                <article class="blog-card">
+                    <div class="blog-image">
+                        {% case post.category %}
+                            {% when 'Performance' %}
+                                <i class="fas fa-tachometer-alt"></i>
+                            {% when 'Development' %}
+                                <i class="fas fa-code-branch"></i>
+                            {% when 'Mobile' %}
+                                <i class="fas fa-mobile-alt"></i>
+                            {% when 'Tutorials' %}
+                                <i class="fas fa-graduation-cap"></i>
+                            {% else %}
+                                <i class="fas fa-file-alt"></i>
+                        {% endcase %}
+                        <div class="blog-category {{ post.category | downcase }}">{{ post.category }}</div>
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">
+                            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                        </h3>
+                        <p class="blog-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">{{ post.date | date: "%B %d, %Y" }}</span>
+                            <a href="{{ post.url | relative_url }}" class="blog-link">Read More</a>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+            
+            <!-- If no featured posts, show latest posts -->
+            {% if featured_posts.size == 0 %}
+                {% for post in site.posts limit: 3 %}
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            {% case post.category %}
+                                {% when 'Performance' %}
+                                    <i class="fas fa-tachometer-alt"></i>
+                                {% when 'Development' %}
+                                    <i class="fas fa-code-branch"></i>
+                                {% when 'Mobile' %}
+                                    <i class="fas fa-mobile-alt"></i>
+                                {% when 'Tutorials' %}
+                                    <i class="fas fa-graduation-cap"></i>
+                                {% else %}
+                                    <i class="fas fa-file-alt"></i>
+                            {% endcase %}
+                            <div class="blog-category {{ post.category | downcase }}">{{ post.category | default: "Article" }}</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">
+                                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                            </h3>
+                            <p class="blog-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                            <div class="blog-meta">
+                                <span class="blog-date">{{ post.date | date: "%B %d, %Y" }}</span>
+                                <a href="{{ post.url | relative_url }}" class="blog-link">Read More</a>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="text-center">
+            <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary btn-large">
+                <i class="fas fa-newspaper"></i>
+                View All Articles
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Key Features Section -->
+<section class="features-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title gradient-text">Why AEM Edge Delivery?</h2>
+            <p class="section-subtitle">
+                Discover the key advantages that make Edge Delivery Services the future of web development
+            </p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="feature-title">Mobile Optimized</h3>
+                <p class="feature-description">
+                    Built with mobile-first principles, delivering exceptional experiences across all devices.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">Secure & Scalable</h3>
+                <p class="feature-description">
+                    Enterprise-grade security with automatic scaling to handle traffic spikes effortlessly.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-content">
+            <div class="newsletter-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <h2 class="newsletter-title">Stay Updated with AEM Edge Insights</h2>
+            <p class="newsletter-text">Get the latest tutorials, performance tips, and development insights delivered to your inbox</p>
+            <form class="newsletter-form" id="newsletter-form">
+                <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+</section><div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="feature-title">Lightning Fast</h3>
+                <p class="feature-description">
+                    Achieve sub-second load times with edge-first architecture and intelligent caching strategies.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <h3 class="feature-title">Developer Friendly</h3>
+                <p class="feature-description">
+                    Git-based workflows, familiar tools, and simplified deployment processes for modern development.
+                </p>
+            </div>
+            
+            <div class="feature-card">

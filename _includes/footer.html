@@ -1,0 +1,61 @@
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title gradient-text">{{ site.title }}</h3>
+                <p class="footer-text">
+                    {{ site.description }}
+                </p>
+                <div class="footer-social">
+                    <a href="mailto:{{ site.email }}" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    {% if site.linkedin_username %}
+                        <a href="https://linkedin.com/in/{{ site.linkedin_username }}" 
+                           target="_blank" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    {% endif %}
+                    {% if site.github_username %}
+                        <a href="https://github.com/{{ site.github_username }}" 
+                           target="_blank" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    {% for item in site.navigation %}
+                        <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Categories</h4>
+                <ul class="footer-links">
+                    {% for category in site.categories %}
+                        <li><a href="{{ '/blog/category/' | append: category.slug | relative_url }}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Recent Posts</h4>
+                <ul class="footer-links">
+                    {% for post in site.posts limit:4 %}
+                        <li><a href="{{ post.url | relative_url }}">{{ post.title | truncate: 30 }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved. | Advancing AEM Edge Delivery Knowledge</p>
+        </div>
+    </div>
+</footer>

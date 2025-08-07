@@ -1,0 +1,191 @@
+---
+layout: default
+title: Contact
+description: "Have questions about AEM Edge Delivery Services or want to collaborate? I'd love to hear from you."
+permalink: /contact/
+custom_js:
+  - contact.js
+---
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title gradient-text">Get in Touch</h1>
+        <p class="page-subtitle">Have questions about AEM Edge Delivery Services or want to collaborate? I'd love to hear from you.</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-content">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2 class="contact-title">Let's Connect</h2>
+                <p class="contact-description">
+                    Whether you're looking for help with AEM Edge implementation, performance optimization, 
+                    or just want to discuss the latest in web development, I'm here to help.
+                </p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 class="contact-label">Email</h3>
+                            <a href="mailto:{{ site.email }}" class="contact-link">
+                                {{ site.email }}
+                            </a>
+                            <p class="contact-note">I typically respond within 24 hours</p>
+                        </div>
+                    </div>
+                    
+                    {% if site.linkedin_username %}
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 class="contact-label">LinkedIn</h3>
+                            <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" class="contact-link">
+                                linkedin.com/in/{{ site.linkedin_username }}
+                            </a>
+                            <p class="contact-note">Let's connect professionally</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 class="contact-label">Website</h3>
+                            <span class="contact-link">{{ site.url | replace: 'https://', '' | replace: 'http://', '' }}</span>
+                            <p class="contact-note">Your source for Edge Delivery insights</p>
+                        </div>
+                    </div>
+                    
+                    {% if site.github_username %}
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 class="contact-label">GitHub</h3>
+                            <a href="https://github.com/{{ site.github_username }}" target="_blank" class="contact-link">
+                                github.com/{{ site.github_username }}
+                            </a>
+                            <p class="contact-note">Check out my Edge projects</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <h2 class="form-title">Send a Message</h2>
+                <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name *</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject *</label>
+                        <select id="subject" name="subject" class="form-input" required>
+                            <option value="">Select a topic</option>
+                            <option value="edge-consultation">AEM Edge Consultation</option>
+                            <option value="performance-help">Performance Optimization Help</option>
+                            <option value="development-question">Development Question</option>
+                            <option value="collaboration">Collaboration Opportunity</option>
+                            <option value="tutorial-request">Tutorial Request</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message *</label>
+                        <textarea id="message" name="message" rows="6" class="form-input" 
+                                  placeholder="Tell me about your project, question, or how I can help..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="newsletter" name="newsletter" class="form-checkbox">
+                            <span class="checkbox-text">Subscribe to newsletter for latest AEM Edge insights</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+                
+                <div id="form-status" class="form-status" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <div class="container">
+        <h2 class="section-title gradient-text">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    What AEM Edge services do you offer?
+                </h3>
+                <p class="faq-answer">
+                    I provide consultation on AEM Edge Delivery implementation, performance optimization, 
+                    custom block development, migration strategies, and developer training.
+                </p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <i class="fas fa-clock"></i>
+                    How quickly do you respond?
+                </h3>
+                <p class="faq-answer">
+                    I aim to respond to all inquiries within 24 hours on business days. 
+                    Urgent technical questions often get faster responses.
+                </p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <i class="fas fa-handshake"></i>
+                    Do you offer project collaboration?
+                </h3>
+                <p class="faq-answer">
+                    Yes! I'm open to collaborating on interesting AEM Edge projects, 
+                    whether it's technical consultation, development work, or content creation.
+                </p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <i class="fas fa-graduation-cap"></i>
+                    Can you provide training?
+                </h3>
+                <p class="faq-answer">
+                    I offer both individual mentoring and team training sessions on AEM Edge Delivery Services, 
+                    covering everything from basics to advanced development patterns.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
