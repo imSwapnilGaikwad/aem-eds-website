@@ -18,7 +18,7 @@
     <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ '/aem-eds-website/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <!-- Canonical URL -->
@@ -36,10 +36,10 @@
     {% include footer.html %}
     
     <!-- Scripts -->
-    <script src="{{ 'aem-eds-website/aem-eds-website/assets/css/main.css/main.js' | relative_url }}"></script>
+    <script src="{{ 'aem-eds-website/assets/css/main.css/main.js' | relative_url }}"></script>
     {% if page.custom_js %}
         {% for js_file in page.custom_js %}
-            <script src="{{ 'aem-eds-website/aem-eds-website/assets/css/main.css/' | append: js_file | relative_url }}"></script>
+            <script src="{{ 'aem-eds-website/assets/css/main.css/' | append: js_file | relative_url }}"></script>
         {% endfor %}
     {% endif %}
 </body>
