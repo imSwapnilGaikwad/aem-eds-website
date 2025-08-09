@@ -36,10 +36,10 @@
     {% include footer.html %}
     
     <!-- Scripts -->
-    <script src="{{ 'aem-eds-website/assets/js/main.js' | relative_url }}"></script>
+    <script src="{{ 'assets/js/main.js' | relative_url }}"></script>
     {% if page.custom_js %}
         {% for js_file in page.custom_js %}
-            <script src="{{ 'aem-eds-website/assets/js/' | append: js_file | relative_url }}"></script>
+            <script src="{{ 'assets/js/' | append: js_file | relative_url }}"></script>
         {% endfor %}
     {% endif %}
 </body>
