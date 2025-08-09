@@ -51,71 +51,38 @@ Experience Manager Edge Delivery Services"
         </div>
 
         <div class="blog-grid">
-            {% assign featured_posts = site.posts | where: "featured", true | limit: 3 %}
-            {% for post in featured_posts %}
-            <article class="blog-card">
-                <div class="blog-image">
-                    {% case post.category %}
-                    {% when 'Performance' %}
-                    <i class="fas fa-tachometer-alt"></i>
-                    {% when 'Development' %}
-                    <i class="fas fa-code-branch"></i>
-                    {% when 'Mobile' %}
-                    <i class="fas fa-mobile-alt"></i>
-                    {% when 'Tutorials' %}
-                    <i class="fas fa-graduation-cap"></i>
-                    {% else %}
-                    <i class="fas fa-file-alt"></i>
-                    {% endcase %}
-                    <div class="blog-category {{ post.category | downcase }}">{{ post.category }}</div>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">
-                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                    </h3>
-                    <p class="blog-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-                    <div class="blog-meta">
-                        <span class="blog-date">{{ post.date | date: "%B %d, %Y" }}</span>
-                        <a href="{{ post.url | relative_url }}" class="blog-link">Read More</a>
-                    </div>
-                </div>
-            </article>
-            {% endfor %}
-
-            <!-- If no featured posts, show latest posts -->
-            {% if featured_posts.size == 0 %}
-            {% for post in site.posts limit: 3 %}
-            <article class="blog-card">
-                <div class="blog-image">
-                    {% case post.category %}
-                    {% when 'Performance' %}
-                    <i class="fas fa-tachometer-alt"></i>
-                    {% when 'Development' %}
-                    <i class="fas fa-code-branch"></i>
-                    {% when 'Mobile' %}
-                    <i class="fas fa-mobile-alt"></i>
-                    {% when 'Tutorials' %}
-                    <i class="fas fa-graduation-cap"></i>
-                    {% else %}
-                    <i class="fas fa-file-alt"></i>
-                    {% endcase %}
-                    <div class="blog-category {{ post.category | downcase }}">{{ post.category | default: "Article" }}
-                    </div>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">
-                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                    </h3>
-                    <p class="blog-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-                    <div class="blog-meta">
-                        <span class="blog-date">{{ post.date | date: "%B %d, %Y" }}</span>
-                        <a href="{{ post.url | relative_url }}" class="blog-link">Read More</a>
-                    </div>
-                </div>
-            </article>
-            {% endfor %}
-            {% endif %}
+    {% for post in site.posts limit: 5 %}
+    <article class="blog-card {% if post.featured %}featured{% endif %}">
+        <div class="blog-image">
+            {% case post.category %}
+            {% when 'Performance' %}
+            <i class="fas fa-tachometer-alt"></i>
+            {% when 'Development' %}
+            <i class="fas fa-code-branch"></i>
+            {% when 'Mobile' %}
+            <i class="fas fa-mobile-alt"></i>
+            {% when 'Tutorials' %}
+            <i class="fas fa-graduation-cap"></i>
+            {% else %}
+            <i class="fas fa-file-alt"></i>
+            {% endcase %}
+            <div class="blog-category {{ post.category | downcase }}">
+                {% if post.featured %}Featured • {% endif %}{{ post.category | default: "Article" }}
+            </div>
         </div>
+        <div class="blog-content">
+            <h3 class="blog-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <p class="blog-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+            <div class="blog-meta">
+                <span class="blog-date">{{ post.date | date: "%B %d, %Y" }}</span>
+                <a href="{{ post.url | relative_url }}" class="blog-link">Read More</a>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</div>
 
         <div class="text-center">
             <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary btn-large">
