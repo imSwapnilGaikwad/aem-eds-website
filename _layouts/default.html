@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title | escape }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-    
+    <meta name="description"
+        content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
     <!-- SEO -->
     <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:description"
+        content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-    
+    <meta name="twitter:description"
+        content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-    
+
     {% seo %}
 </head>
+
 <body class="{% if page.body_class %}{{ page.body_class }}{% endif %}">
     {% include header.html %}
-    
+
     <main>
         {{ content }}
     </main>
-    
+
     {% include footer.html %}
-    
+
     <!-- Scripts -->
-    <script src="{{ 'assets/js/main.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
     {% if page.custom_js %}
-        {% for js_file in page.custom_js %}
-            <script src="{{ 'assets/js/' | append: js_file | relative_url }}"></script>
-        {% endfor %}
+    {% for js_file in page.custom_js %}
+    <script src="{{ '/assets/js/' | append: js_file | relative_url }}"></script>
+    {% endfor %}
     {% endif %}
 </body>
+
 </html>
