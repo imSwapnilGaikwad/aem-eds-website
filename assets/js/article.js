@@ -1,4 +1,6 @@
 // Dynamic Table of Contents and Related Articles for Blog Posts
+
+console.log("Article JS");
 document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize article enhancements
