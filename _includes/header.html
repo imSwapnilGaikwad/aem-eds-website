@@ -7,12 +7,12 @@
             </a>
         </div>
         <div class="nav-menu" id="nav-menu">
-            {% for item in site.navigation %}
-                <a href="{{ item.url | relative_url }}" 
-                   class="nav-link {% if page.url == item.url or (item.url == 'aem-eds-website/blog/' and page.layout == 'post') %}active{% endif %}">
-                    {{ item.title }}
-                </a>
-            {% endfor %}
+            <div class="nav-menu" id="nav-menu">
+                <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
+                <a href="{{ '/about/' | relative_url }}" class="nav-link">About</a>
+                <a href="{{ '/blog/' | relative_url }}" class="nav-link">Blogs</a>
+                <a href="{{ '/contact/' | relative_url }}" class="nav-link">Contact</a>
+            </div>
         </div>
         <div class="nav-toggle" id="nav-toggle">
             <i class="fas fa-bars"></i>
