@@ -1,8 +1,9 @@
 # Site settings
 title: AEMeds.in
 description: "Advancing AEM Edge Delivery knowledge through tutorials, insights, and expert analysis"
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://aemeds.in" # the base hostname & protocol for your site
+baseurl: "/aem-eds-website"
+url: "https://imswapnilgaikwad.github.io"
+#url: "https://aemeds.in" # the base hostname & protocol for your site
 author: AEM Edge Expert
 email: contact@aemeds.in
 
