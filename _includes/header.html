@@ -2,14 +2,14 @@
 <nav class="navbar" id="navbar">
     <div class="nav-container">
         <div class="nav-brand">
-            <a href="{{ '/' | relative_url }}" class="brand-link">
+            <a href="{{ 'aem-eds-website/' | relative_url }}" class="brand-link">
                 <h1 class="logo">AEMeds.in</h1>
             </a>
         </div>
         <div class="nav-menu" id="nav-menu">
             {% for item in site.navigation %}
                 <a href="{{ item.url | relative_url }}" 
-                   class="nav-link {% if page.url == item.url or (item.url == '/blog/' and page.layout == 'post') %}active{% endif %}">
+                   class="nav-link {% if page.url == item.url or (item.url == 'aem-eds-website/blog/' and page.layout == 'post') %}active{% endif %}">
                     {{ item.title }}
                 </a>
             {% endfor %}
