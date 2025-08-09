@@ -1592,9 +1592,6 @@ body {
 }
 
 /* Article Content */
-.article-content {
-  padding: 3rem 0;
-}
 
 .content-wrapper {
   display: grid;
