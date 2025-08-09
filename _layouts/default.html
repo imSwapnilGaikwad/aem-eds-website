@@ -41,8 +41,13 @@
     {% include footer.html %}
 
     <!-- Scripts -->
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <!-- In blog.html -->
+    <script src="{{ '/assets/js/blog-filter.js' | relative_url }}"></script>
 
+    <!-- In post layout -->
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/article.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/code-copy.js' | relative_url }}"></script>
     {% if page.custom_js %}
     {% for js_file in page.custom_js %}
     <script src="{{ '/assets/js/' | append: js_file | relative_url }}"></script>
