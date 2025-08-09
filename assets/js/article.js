@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         try {
             // Option 1: Fetch from JSON file (you can generate this in Jekyll)
-            const response = await fetch('/assets/data/articles.json');
+            const response = await fetch('/aem-eds-website/assets/data/articles.json');
             if (!response.ok) {
                 // Option 2: Fallback to parsing existing DOM elements
                 return getRelatedArticlesFromDOM(tags, category, currentTitle);
