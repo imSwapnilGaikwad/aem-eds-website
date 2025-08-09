@@ -49,45 +49,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    function applyFilters() {
-        let visibleCount = 0;
+   function applyFilters() {
+    let visibleCount = 0;
+    
+    blogCards.forEach((card, index) => {
+        const category = card.getAttribute('data-category') || '';
+        const tags = card.getAttribute('data-tags') || '';
+        const title = card.getAttribute('data-title') || '';
+        const content = card.querySelector('.blog-excerpt')?.textContent.toLowerCase() || '';
         
-        blogCards.forEach((card, index) => {
-            const category = card.getAttribute('data-category') || '';
-            const title = card.getAttribute('data-title') || card.querySelector('.blog-title')?.textContent.toLowerCase() || '';
-            const content = card.getAttribute('data-content') || card.querySelector('.blog-excerpt')?.textContent.toLowerCase() || '';
-            
-            // Check category filter
-            const categoryMatch = currentFilter === 'all' || category === currentFilter;
-            
-            // Check search filter
-            const searchMatch = currentSearch === '' || 
-                               title.includes(currentSearch) || 
-                               content.includes(currentSearch);
-            
-            const shouldShow = categoryMatch && searchMatch;
-            
-            if (shouldShow) {
-                showCard(card, index * 0.1);
-                visibleCount++;
-            } else {
-                hideCard(card);
-            }
-        });
+        // Check category/tag filter
+        const categoryMatch = currentFilter === 'all' || 
+                             category === currentFilter || 
+                             tags.includes(currentFilter);
         
-        // Show/hide no results message
-        if (noResults) {
-            if (visibleCount === 0) {
-                noResults.style.display = 'block';
-                updateNoResultsMessage();
-            } else {
-                noResults.style.display = 'none';
-            }
+        // Check search filter
+        const searchMatch = currentSearch === '' || 
+                           title.includes(currentSearch) || 
+                           content.includes(currentSearch) ||
+                           tags.includes(currentSearch);
+        
+        const shouldShow = categoryMatch && searchMatch;
+        
+        if (shouldShow) {
+            showCard(card, index * 0.1);
+            visibleCount++;
+        } else {
+            hideCard(card);
         }
-        
-        // Update URL without refreshing page
-        updateURL();
-    }
+    });
+    
+    // Show/hide no results message
+    toggleNoResults(visibleCount === 0);
+}
     
     function showCard(card, delay = 0) {
         card.style.display = 'block';
